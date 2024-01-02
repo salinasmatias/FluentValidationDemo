@@ -1,3 +1,9 @@
+using Application.Repositories;
+using Application.Services;
+using Application.Services.Contracts;
+using Infrastructure.Repository;
+using System.Text.Json.Serialization;
+
 namespace AutomaticValidation.Api
 {
     public class Program
@@ -8,10 +14,17 @@ namespace AutomaticValidation.Api
 
             // Add services to the container.
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers().AddJsonOptions(x =>
+            {
+                // serialize enums as strings in api responses (e.g. Role)
+                x.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            });
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddScoped<IProductRepository, ProductRepository>();
+            builder.Services.AddScoped<IProductService, ProductService>();
 
             var app = builder.Build();
 
