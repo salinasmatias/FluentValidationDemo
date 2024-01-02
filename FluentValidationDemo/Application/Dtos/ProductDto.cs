@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.Dtos
 {
-    internal class ProductDto
+    public class ProductDto
     {
         public string Name { get; set; }
         public string Description { get; set; }

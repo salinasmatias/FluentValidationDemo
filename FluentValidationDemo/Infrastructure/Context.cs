@@ -2,9 +2,9 @@
 
 namespace Infrastructure
 {
-    public class Context
+    public static class Context
     {
-        public List<Product> Products = new List<Product>()
+        public static List<Product> Products = new List<Product>()
         {
             new Product
             {
